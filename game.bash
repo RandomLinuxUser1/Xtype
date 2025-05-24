@@ -17,12 +17,13 @@ CYAN='\033[38;5;51m'
 show_header() {
     clear
     echo -e "${PURPLE}"
-echo "██╗  ██╗████████╗██╗   ██╗██████╗ ███████╗"
-echo "╚██╗██╔╝╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝"
-echo " ╚███╔╝    ██║    ╚████╔╝ ██████╔╝█████╗"  
-echo " ██╔██╗    ██║     ╚██╔╝  ██╔═══╝ ██╔══╝"
-echo "██╔╝ ██╗   ██║      ██║   ██║     ███████╗"
-echo "╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚═╝     ╚══════╝"
+    echo " ██╗  ██╗████████╗██╗   ██╗██████╗ ███████╗"
+    echo " ╚██╗██╔╝╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝"
+    echo "  ╚███╔╝    ██║    ╚████╔╝ ██████╔╝█████╗  "
+    echo "  ██╔██╗    ██║     ╚██╔╝  ██╔═══╝ ██╔══╝  "
+    echo " ██╔╝ ██╗   ██║      ██║   ██║     ███████╗"
+    echo " ╚═╝  ╚═╝   ██║      ██║   ██║     ███████╗"
+    echo " ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚═╝     ╚══════╝"
     echo -e "${NC}${BOLD}                    v$VERSION${NC}\n"
 }
 
@@ -32,6 +33,11 @@ EASY=(
     "Bash scripting can be fun and useful."
     "Practice makes perfect for typing skills."
     "Start slow and focus on accuracy first."
+    "Keep calm and code on."
+    "Programming is the art of telling another human what one wants the computer to do."
+    "The best way to learn is by doing."
+    "Every expert was once a beginner."
+    "Simple is better than complex."
 )
 
 MEDIUM=(
@@ -40,6 +46,11 @@ MEDIUM=(
     "Command line skills boost productivity."
     "Typing speed improves with consistent practice."
     "Algorithmic complexity affects program performance."
+    "Linux is the best operating system for developers."
+    "Open source software powers the modern internet."
+    "Version control is essential for team collaboration."
+    "Debugging is twice as hard as writing the code in the first place."
+    "Premature optimization is the root of all evil."
 )
 
 HARD=(
@@ -48,6 +59,11 @@ HARD=(
     "Distributed systems face CAP theorem tradeoffs and consistency models."
     "Neural networks utilize backpropagation for gradient descent optimization."
     "Type theory influences programming language design and implementation."
+    "The halting problem demonstrates the limits of computability."
+    "Monads are monoids in the category of endofunctors."
+    "Concurrent programming requires careful synchronization."
+    "The P versus NP problem remains unsolved in computer science."
+    "Lambda calculus forms the basis of functional programming."
 )
 
 LONG=(
@@ -172,17 +188,27 @@ play_game() {
 
 get_prompt() {
     load_stats
-    if [ $sessions -eq 0 ]; then
-        echo "${EASY[$RANDOM % ${#EASY[@]}]}"
+    if [ $sessions -lt 3 ]; then  # First 3 sessions always easy
+        echo "${EASY[$RANDOM % ${#EASY[@]}]"
     else
-        if (( $(echo "$wpm >= 70 && $total_accuracy >= 90" | bc -l) )); then
-            echo "${LONG[$RANDOM % ${#LONG[@]}]}"
-        elif (( $(echo "$wpm >= 50" | bc -l) )); then
-            echo "${HARD[$RANDOM % ${#HARD[@]}]}"
-        elif (( $(echo "$wpm >= 30" | bc -l) )); then
-            echo "${MEDIUM[$RANDOM % ${#MEDIUM[@]}]}"
+        if (( $(echo "$wpm >= 60 && $total_accuracy >= 85" | bc -l) )); then
+            # 20% chance of long prompt if qualified
+            if (( RANDOM % 5 == 0 )); then
+                echo "${LONG[$RANDOM % ${#LONG[@]}]"
+            else
+                echo "${HARD[$RANDOM % ${#HARD[@]}]"
+            fi
+        elif (( $(echo "$wpm >= 40" | bc -l) )); then
+            echo "${HARD[$RANDOM % ${#HARD[@]}]"
+        elif (( $(echo "$wpm >= 25" | bc -l) )); then
+            echo "${MEDIUM[$RANDOM % ${#MEDIUM[@]}]"
         else
-            echo "${EASY[$RANDOM % ${#EASY[@]}]}"
+            # 30% chance of medium even at low WPM
+            if (( RANDOM % 3 == 0 )); then
+                echo "${MEDIUM[$RANDOM % ${#MEDIUM[@]}]"
+            else
+                echo "${EASY[$RANDOM % ${#EASY[@]}]"
+            fi
         fi
     fi
 }
