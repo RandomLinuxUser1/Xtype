@@ -4,6 +4,18 @@
 -------------------------------------
 INSTALLATION INSTRUCTIONS
 
+btw if you dont have git install on linux run these commands
+
+- FOR DEBAIN BASED DISTROS (apt)
+```bash
+sudo apt install git
+```
+- FOR DISTROS LIKE FEDORA RUN THIS COMMAND
+```bash
+sudo dnf install git
+```
+Now that you have git installed you can continue with installing xtype :D
+
 First clone the repository:
 ```bash
 git clone https://github.com/RandomLinuxUser1/Xtype.git
