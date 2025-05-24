@@ -45,7 +45,7 @@ chmod +x bootstrapper.sh
 after running the command above run this command :D
 
 ```bash
-    sudo ln -sf $(pwd)/bootstrapper.sh /usr/local/bin/xtype
+sudo ln -sf $(pwd)/bootstrapper.sh /usr/local/bin/xtype
 ```
 
 
