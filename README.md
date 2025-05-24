@@ -1,4 +1,4 @@
-# XTYPE 
+# PLEASE READ!
 
 
 -------------------------------------
@@ -7,26 +7,32 @@ INSTALLATION INSTRUCTIONS
 First clone the repository:
 ```bash
 git clone https://github.com/RandomLinuxUser1/Xtype.git
+```
 
 now run this command
 
+```bash
 cd Xtype
+```
 
 once your in there run this command 
 
+```bash
 chmod +x game.bash
+```
 
 after running the command above run this command :D
 
-
+```bash
 find ~ -name game.bash -exec sudo ln -sf {} /usr/local/bin/xtype \; -exec chmod +x {} \; -exec bash -c 'clear; echo "Installed! to play type 'xtype' in your terminal and click enter."' \; -quit
-
+```
 
 
 now once youve installed the game run the following command:
 
+```bash
 xtype
-
+```
 
 
 
@@ -37,7 +43,9 @@ Your typing stats are saved here:
 
 To uninstall run this command :D
 
+```bash
 sudo rm /usr/local/bin/xtype ~/.xtype_stats
+```
 
 # why to use Xtype
 
