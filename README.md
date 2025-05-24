@@ -39,13 +39,13 @@ cd Xtype
 once your in there run this command 
 
 ```bash
-chmod +x game.bash
+chmod +x bootstrapper.sh
 ```
 
 after running the command above run this command :D
 
 ```bash
-find ~ -name game.bash -exec sudo ln -sf {} /usr/local/bin/xtype \; -exec chmod +x {} \; -exec bash -c 'clear; echo "Installed! to play type 'xtype' in your terminal and click enter."' \; -quit
+find ~ -name bootstrapper.sh -exec sudo ln -sf {} /usr/local/bin/xtype \; -exec chmod +x {} \; -exec bash -c 'clear; echo "Installed! Run '"'"'xtype'"'"' in your terminal to start playing."' \; -quit
 ```
 
 
