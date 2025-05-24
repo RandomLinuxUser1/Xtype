@@ -19,11 +19,28 @@ if [ ! -f "$TMP_DIR/Version.txt" ]; then
     exit 1
 fi
 
-current_ver=0
+# Function to compare version numbers with decimals
+version_compare() {
+    [ "$1" = "$2" ] && return 0
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++)); do ver1[i]=0; done
+    for ((i=0; i<${#ver1[@]}; i++)); do
+        ((10#${ver1[i]} > 10#${ver2[i]})) && return 1
+        ((10#${ver1[i]} < 10#${ver2[i]})) && return 2
+    done
+    return 0
+}
+
+current_ver="0"
 [ -f "$INSTALL_DIR/Version.txt" ] && current_ver=$(cat "$INSTALL_DIR/Version.txt")
 new_ver=$(cat "$TMP_DIR/Version.txt")
 
-if [ "$new_ver" -gt "$current_ver" ] || [ ! -d "$INSTALL_DIR" ]; then
+# Compare versions
+version_compare "$new_ver" "$current_ver"
+comparison_result=$?
+
+if [ $comparison_result -eq 1 ] || [ ! -d "$INSTALL_DIR" ]; then
     cp "$0" "$HOME/" || exit 1
     [ -f "/usr/local/bin/xtype" ] && sudo rm /usr/local/bin/xtype ~/.xtype_stats 2>/dev/null
     rm -rf "$INSTALL_DIR"
