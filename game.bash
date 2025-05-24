@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="3.1"
+VERSION="2.9"
 STATS_FILE="$HOME/.xtype_stats"
 
 BOLD='\033[1m'
