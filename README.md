@@ -45,7 +45,7 @@ chmod +x bootstrapper.sh
 after running the command above run this command :D
 
 ```bash
-find ~ -name bootstrapper.sh -exec sudo ln -sf {} /usr/local/bin/xtype \; -exec chmod +x {} \; -exec bash -c 'clear; echo "Installed! Run '"'"'xtype'"'"' in your terminal to start playing."' \; -quit
+    sudo ln -sf $(pwd)/bootstrapper.sh /usr/local/bin/xtype
 ```
 
 
