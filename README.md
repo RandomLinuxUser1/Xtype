@@ -14,6 +14,15 @@ sudo apt install git
 ```bash
 sudo dnf install git
 ```
+- FOR DISTROS BASED ON ARCH LIKE ENDEVOUR OS RUN THIS COMMAND
+```bash
+sudo pacman -S git
+```
+- DISTRONS THAT USE YUM (like centOS
+```bash
+sudo yum install git 
+```
+
 Now that you have git installed you can continue with installing xtype :D
 
 First clone the repository:
