@@ -22,7 +22,6 @@ show_header() {
     echo "  ╚███╔╝    ██║    ╚████╔╝ ██████╔╝█████╗  "
     echo "  ██╔██╗    ██║     ╚██╔╝  ██╔═══╝ ██╔══╝  "
     echo " ██╔╝ ██╗   ██║      ██║   ██║     ███████╗"
-    echo " ╚═╝  ╚═╝   ██║      ██║   ██║     ███████╗"
     echo " ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚═╝     ╚══════╝"
     echo -e "${NC}${BOLD}                    v$VERSION${NC}\n"
 }
@@ -189,25 +188,25 @@ play_game() {
 get_prompt() {
     load_stats
     if [ $sessions -lt 3 ]; then  # First 3 sessions always easy
-        echo "${EASY[$RANDOM % ${#EASY[@]}]"
+        echo "${EASY[$RANDOM % ${#EASY[@]}]}"
     else
         if (( $(echo "$wpm >= 60 && $total_accuracy >= 85" | bc -l) )); then
             # 20% chance of long prompt if qualified
             if (( RANDOM % 5 == 0 )); then
-                echo "${LONG[$RANDOM % ${#LONG[@]}]"
+                echo "${LONG[$RANDOM % ${#LONG[@]}]}"
             else
-                echo "${HARD[$RANDOM % ${#HARD[@]}]"
+                echo "${HARD[$RANDOM % ${#HARD[@]}]}"
             fi
         elif (( $(echo "$wpm >= 40" | bc -l) )); then
-            echo "${HARD[$RANDOM % ${#HARD[@]}]"
+            echo "${HARD[$RANDOM % ${#HARD[@]}]}"
         elif (( $(echo "$wpm >= 25" | bc -l) )); then
-            echo "${MEDIUM[$RANDOM % ${#MEDIUM[@]}]"
+            echo "${MEDIUM[$RANDOM % ${#MEDIUM[@]}]}"
         else
             # 30% chance of medium even at low WPM
             if (( RANDOM % 3 == 0 )); then
-                echo "${MEDIUM[$RANDOM % ${#MEDIUM[@]}]"
+                echo "${MEDIUM[$RANDOM % ${#MEDIUM[@]}]}"
             else
-                echo "${EASY[$RANDOM % ${#EASY[@]}]"
+                echo "${EASY[$RANDOM % ${#EASY[@]}]}"
             fi
         fi
     fi
